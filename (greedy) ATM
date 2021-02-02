@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+	int time[n];
+	for (int i = 0; i < n; i++) {
+		cin >> time[i];
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n - 1; j++) {
+			if (time[i] < time[j]) {
+				int temp = time[j];
+				time[j] = time[i];
+				time[i] = temp;
+			}
+		}
+	}
+
+	int sum = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j <= i; j++) {
+			sum += time[j];
+		}
+	}
+	cout << sum;
+}
