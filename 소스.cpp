@@ -6,17 +6,17 @@
 #define max 1001
 using namespace std;
 
-bool visit[max]; //¹æ¹®¿©ºÎ
+bool visit[max]; //ë°©ë¬¸ì—¬ë¶€
 
-vector <int> graph[max];// ±×·¡ÇÁ dfs¿¡¼­ »ç¿ë 
+vector <int> graph[max];// ê·¸ë˜í”„ dfsì—ì„œ ì‚¬ìš© 
 queue <int> Q;
 
 void dfs(int srt) {
-	visit[srt] = true;//¹æ¹® Ç¥½Ã
+	visit[srt] = true;//ë°©ë¬¸ í‘œì‹œ
 	cout << srt << " ";
 	//cout <<"\nstart index : " <<srt<<endl;
-	for (int i = 0; i < graph[srt].size(); i++) {// ÇØ´ç ÀÎµ¦½ºÀÇ ¿¬°á ³ëµå °³¼ö¸¸Å­ Å½»ö
-		int next = graph[srt][i];//ÀÌÁßÀ¸·Î ÇØ¾ßÇÔ ***[¹è¿­ÀÎµ¦½º][º¤ÅÍÀÎµ¦½º]
+	for (int i = 0; i < graph[srt].size(); i++) {// í•´ë‹¹ ì¸ë±ìŠ¤ì˜ ì—°ê²° ë…¸ë“œ ê°œìˆ˜ë§Œí¼ íƒìƒ‰
+		int next = graph[srt][i];//ì´ì¤‘ìœ¼ë¡œ í•´ì•¼í•¨ ***[ë°°ì—´ì¸ë±ìŠ¤][ë²¡í„°ì¸ë±ìŠ¤]
 		if (!visit[next]) {
 			dfs(next);
 		}
@@ -28,11 +28,11 @@ void bfs(int srt) {
 	memset(visit, false, sizeof(visit));
 	visit[srt] = true;
 	Q.push(srt);
-	while (!Q.empty()) {//Å¥¿¡ ¿ø¼Ò°¡ ÀÖÀ» ¶§ ±îÁö
-		int x = Q.front();//Å¥ÀÇ Ã¹¹øÂ° ¿ø¼Ò(LIFO->popÇÒ¶§ °¡Àå Ã¹¹øÂ° ¿ø¼Ò¸¦ popÇÔ)
-		Q.pop();//°¡Àå Ã¹¹øÂ° ¿ø¼Ò »èÁ¦
+	while (!Q.empty()) {//íì— ì›ì†Œê°€ ìˆì„ ë•Œ ê¹Œì§€
+		int x = Q.front();//íì˜ ì²«ë²ˆì§¸ ì›ì†Œ(IFO->popí• ë•Œ ê°€ì¥ ì²«ë²ˆì§¸ ì›ì†Œë¥¼ popí•¨)
+		Q.pop();//ê°€ì¥ ì²«ë²ˆì§¸ ì›ì†Œ ì‚­ì œ
 		cout << x << " ";
-		for (int i = 0; i < graph[x].size(); i++) {//ÀÎÁ¢ÇÑ ³ëµåÀÇ °³¼ö¸¸Å­
+		for (int i = 0; i < graph[x].size(); i++) {//ì¸ì ‘í•œ ë…¸ë“œì˜ ê°œìˆ˜ë§Œí¼
 			int next = graph[x][i];
 			if (!visit[next]) {
 				visit[next] = true;
@@ -47,7 +47,7 @@ int main() {
 	int vtx, edge, srt; int a, b;
 	cin >> vtx >> edge >> srt;
 
-	// Undirected graph ¸¸µé±â
+	// Undirected graph ë§Œë“¤ê¸°
 	for (int i = 1; i <= edge; i++) {
 		cin >> a >> b;
 		graph[a].push_back(b);
@@ -55,11 +55,11 @@ int main() {
 	}
 
 	//sort
-	for (int i = 1; i <= edge; i++) {//graph->size() == edgeÀÎÁÙ ¿Ö ¾ÈµÇÁö?
+	for (int i = 1; i <= edge; i++) {//graph->size() == edgeì¸ì¤„ ì™œ ì•ˆë˜ì§€?
 		sort(graph[i].begin(), graph[i].end());
 	}
 
-	//visitÀ» ¸ğµÎ false·Î ÃÊ±âÈ­
+	//visitì„ ëª¨ë‘ falseë¡œ ì´ˆê¸°í™”
 	//memset(visit, false, graph->size());
 
 	//Using Dfs
