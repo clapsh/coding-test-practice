@@ -29,7 +29,7 @@ void bfs(int srt) {
 	visit[srt] = true;
 	Q.push(srt);
 	while (!Q.empty()) {//큐에 원소가 있을 때 까지
-		int x = Q.front();//큐의 첫번째 원소(IFO->pop할때 가장 첫번째 원소를 pop함)
+		int x = Q.front();//큐의 첫번째 원소(FIFO->pop할때 가장 첫번째 원소를 pop함)
 		Q.pop();//가장 첫번째 원소 삭제
 		cout << x << " ";
 		for (int i = 0; i < graph[x].size(); i++) {//인접한 노드의 개수만큼
